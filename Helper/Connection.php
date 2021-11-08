@@ -6,11 +6,20 @@ class Connection
 
     private mysqli $conn;
 
+    private Customer $customer;
+
+    private CustomerGroup $customerGroup;
+
+    private Discount $discount;
+
 
     public function __construct($hostname, $username, $password, $database)
     {
         $this->conn = new mysqli($hostname, $username, $password, $database);
         $this->product = new Product();
+        $this->customer = new Customer();
+        $this->customerGroup = new CustomerGroup();
+        $this->discount = new Discount();
     }
 
     public function testConnection (): void
