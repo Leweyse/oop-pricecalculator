@@ -1,8 +1,16 @@
 # PHP Price Calculator
 
 ### PHP Exercise 08/11/2021 - 12/11/2021
-<br>
 
+#Aim of the project:
+Making an OOP price calculator based on the data in our demo database!
+
+## Progress so far &#9745; :
+* Ran the SQL code to add 3 additional tables to the **classicmodels** database
+* Enabled the MySQLi extension in the php.ini file for connecting PHP with the MySQL database
+* Created a **Product** class to contain the relevant data for each product
+* Created a **Connection** class to store the data across the session, gave it a **mysqli** connection property and a Product property
+* Instantiated a Connection object on the logic page to test data retrieval with the inbuilt mysqli class, with the .env security file measure active
 # Application Development (self-hosted)
 
 ## Clone repository

@@ -11,8 +11,9 @@ $database = getenv('DATABASE');
 $hostname = getenv('HOSTNAME');
 
 $conn = new Connection($hostname, $username, $password, $database);
+$colLength = (int)$conn->getColLength("product");
 
-for ($i = 1; $i < 100; $i++) {
+for ($i = 1; $i <= $colLength; $i++) {
     var_dump($conn->displayProduct($i));
 }
 
