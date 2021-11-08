@@ -2,13 +2,7 @@
 
 class Connection
 {
-    private Product $product;
-
     private mysqli $conn;
-
-    private Customer $customer;
-
-    private CustomerGroup $customerGroup;
 
     private Discount $discount;
 
@@ -16,10 +10,6 @@ class Connection
     public function __construct($hostname, $username, $password, $database)
     {
         $this->conn = new mysqli($hostname, $username, $password, $database);
-        $this->product = new Product();
-        $this->customer = new Customer();
-        $this->customerGroup = new CustomerGroup();
-        $this->discount = new Discount();
     }
 
     public function testConnection (): void
@@ -29,29 +19,30 @@ class Connection
         }
     }
 
-    public function getProduct ($id): Product
+    public function getData(int $id, string $table, array $arrElem, $class)
     {
-        $result = $this->conn->query("SELECT name, price FROM product WHERE id = $id");
-        $row = $result->fetch_assoc();
-        $this->product->setProductName($row["name"]);
-        $this->product->setPriceInCents($row["price"]);
-        return $this->product;
-    }
+        $methods = get_class_methods($class);
 
-    public function getCustomer($id): Customer
-    {
-        $customerData = $this->conn->query("SELECT firstname, lastname FROM customer WHERE id = $id");
-        $customer = $customerData->fetch_assoc();
-        $this->customer->setFirstName($customer["firstname"]);
-        $this->customer->setLastName($customer["lastname"]);
-        $this->customerGroup->setId($customer["group_id"]);
-        return $this->customer;
-    }
+        $string = '';
 
-    public function getCustomerGroup($id): CustomerGroup {
-        $customerGroupData = $this->conn->query("SELECT name FROM customer_group WHERE id = $id");
-        $customerGroup = $customerGroupData->fetch_assoc();
-        $this->customerGroup->setName($customerGroup["name"]);
+        foreach($arrElem as $key => $elem) {
+            if ($key == count($arrElem) - 1) {
+                $string .= $elem;
+            } else {
+                $string .= $elem . ",";
+            }
+        }
+
+        $columns = $this->conn->query("SELECT $string FROM $table WHERE id = $id");
+        $row = $columns->fetch_assoc();
+
+        foreach ($methods as $key => $value) {
+            if ($key < count($arrElem)) {
+                $class -> $value($row["$arrElem[$key]"]);
+            }
+        }
+
+        return $class;
     }
 
     public function getColLength ($table): string {
@@ -59,6 +50,4 @@ class Connection
         $colLength = $result->fetch_assoc();
         return $colLength["COUNT(*)"];
     }
-
-
 }
