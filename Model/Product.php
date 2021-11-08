@@ -3,27 +3,25 @@
 class Product
 {
 
-    private float $priceInCents;
+    private int $priceInCents;
 
     private string $productName;
 
-    public function setPriceInCents(int $price): void
+    /**
+     * @param int $priceInCents
+     */
+    public function setPriceInCents(int $priceInCents): void
     {
-        $this -> priceInCents = (float)($price / 100);
+        $this->priceInCents = $priceInCents;
     }
 
+    /**
+     * @param string $productName
+     */
     public function setProductName(string $productName): void
     {
-        $this -> productName = $productName;
+        $this->productName = $productName;
     }
 
-    public function getPriceInCents(): float
-    {
-        return $this -> priceInCents;
-    }
 
-    public function getProductName(): string
-    {
-        return $this -> productName;
-    }
 }
