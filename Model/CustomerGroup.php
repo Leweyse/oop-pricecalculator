@@ -5,27 +5,18 @@ class CustomerGroup extends Discount
 
     private string $name;
 
-    private int $id;
+    private string $id;
 
-    /**
-     * @param string $name
-     */
     public function setName($name): void
     {
         $this->name = $name;
     }
 
-    /**
-     * @param int $id
-     */
     public function setId($id): void
     {
         $this->id = $id;
     }
 
-    /**
-     * @param int $fixedDiscount
-     */
     public function setFixedDiscount($fixedDiscount): void
     {
         if ($fixedDiscount != null) {
@@ -35,9 +26,6 @@ class CustomerGroup extends Discount
         }
     }
 
-    /**
-     * @param int $variableDiscount
-     */
     public function setVariableDiscount($variableDiscount): void
     {
         if ($variableDiscount != null) {
@@ -47,37 +35,23 @@ class CustomerGroup extends Discount
         }
     }
 
-    /**
-     * @return string
-     */
     public function getName(): string
     {
         return $this->name;
     }
 
-    /**
-     * @return int
-     */
     public function getId(): int
     {
-        return $this->id;
+        return (int)$this->id;
     }
 
-    /**
-     * @return int
-     */
     public function getFixedDiscount(): int
     {
         return $this->fixedDiscount;
     }
 
-    /**
-     * @return int
-     */
     public function getVariableDiscount(): int
     {
         return $this->variableDiscount;
     }
-
-
 }

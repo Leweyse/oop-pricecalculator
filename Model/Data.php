@@ -13,7 +13,6 @@ class Data
 
     private Connection $conn;
 
-
     public function __construct($conn)
     {
         $this->conn = $conn;
@@ -31,26 +30,6 @@ class Data
         $this->conn->clearData();
     }
 
-    /**
-     * @return array
-     */
-    public function getAllProducts(): array
-    {
-        return $this->allProducts;
-    }
-
-
-    /**
-     * @return array
-     */
-    public function getAllCustomers(): array
-    {
-        return $this->allCustomers;
-    }
-
-    /**
-     * @param array $allCustomers
-     */
     public function setAllCustomers($customers): void
     {
         $colLength = (int)$this->conn->getColLength("customer");
@@ -62,37 +41,39 @@ class Data
         $this->conn->clearData();
     }
 
-    /**
-     * @return array
-     */
-    public function getAllCustomerGroups(): array
+    public function setAllCustomerGroups($customerGroups): void
     {
-        return $this->allCustomerGroups;
+        $colLength = (int)$this->conn->getColLength("customer_group");
+
+        for ($i = 1; $i <= $colLength; $i++) {
+            $this->conn->setData($i, "customer_group", ["name", "id", "fixed_discount", "variable_discount"], $customerGroups);
+        }
+        $this->allCustomerGroups = $this->conn->getData();
+        $this->conn->clearData();
     }
 
-    /**
-     * @param array $allCustomerGroups
-     */
-    public function setAllCustomerGroups(array $allCustomerGroups): void
-    {
-        $this->allCustomerGroups = $allCustomerGroups;
-    }
-
-    /**
-     * @return array
-     */
-    public function getAllDiscounts(): array
-    {
-        return $this->allDiscounts;
-    }
-
-    /**
-     * @param array $allDiscounts
-     */
     public function setAllDiscounts(array $allDiscounts): void
     {
         $this->allDiscounts = $allDiscounts;
     }
 
+    public function getAllProducts(): array
+    {
+        return $this->allProducts;
+    }
 
+    public function getAllCustomers(): array
+    {
+        return $this->allCustomers;
+    }
+
+    public function getAllCustomerGroups(): array
+    {
+        return $this->allCustomerGroups;
+    }
+
+    public function getAllDiscounts(): array
+    {
+        return $this->allDiscounts;
+    }
 }
