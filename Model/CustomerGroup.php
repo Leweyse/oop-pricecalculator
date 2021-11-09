@@ -25,7 +25,11 @@ class CustomerGroup
 
     public function setParentId($parentId): void
     {
-        $this->parentId = $parentId;
+        if ($parentId != null) {
+            $this->parentId = $parentId;
+        } else {
+            $this->parentId = 'null';
+        }
     }
 
     public function setFixedDiscount($fixedDiscount): void

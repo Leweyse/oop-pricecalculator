@@ -19,6 +19,8 @@ $hostname = getenv('HOSTNAME');
 $conn = new Connection($hostname, $username, $password, $database);
 $data = new Data($conn);
 
+require "Controller/POST.php";
+
 function whatIsHappening() {
     echo '<h2>$_GET</h2>';
     var_dump($_GET);
