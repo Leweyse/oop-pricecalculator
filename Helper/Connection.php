@@ -21,6 +21,7 @@ class Connection
         }
     }
 
+    // SetData method
     public function setData(int $id, string $table, array $arrElem, $class)
     {
         $methods = get_class_methods($class);
@@ -44,8 +45,8 @@ class Connection
             if ($key < count($arrElem)) {
                 $class -> $value($row["$arrElem[$key]"]);
             } else {
-                $arrTemp[] .= $class -> $value();
-                if (count($arrTemp) == count($methods) / 2 ) {
+                $arrTemp[$arrElem[$key % (count($methods) / 2)]] = $class -> $value();
+                if (count($arrTemp) == count($methods) / 2) {
                     array_push($this -> arrData, $arrTemp);
                 }
             }
