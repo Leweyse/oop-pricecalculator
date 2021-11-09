@@ -16,24 +16,13 @@
                 $customer = new Customer();
                 $product = new Product();
                 $customerGroup = new CustomerGroup();
+                $data->setAllProducts($product);
+                selectSection($data->getAllProducts());
 
-                $colLength = (int)$conn->getColLength("product");
-
-                for ($i = 1; $i <= $colLength; $i++) {
-                    $conn->setData($i, "product", ["id", "name", "price"], $product);
-                }
-
-                selectSection($conn -> getData());
-
-                $conn -> cleanData();
-
-                $colLength = (int)$conn->getColLength("customer");
-
-                for ($i = 1; $i <= $colLength; $i++) {
-                    $conn->setData($i, "customer", ["lastname", "firstname", "group_id", "fixed_discount", "variable_discount"], $customer);
-                }
+                $data->setAllCustomers($customer);
+                selectSection($data->getAllCustomers());
                 
-                selectSection($conn -> getData());
+
             ?>
             <input type="submit" value="Submit">
         </form>

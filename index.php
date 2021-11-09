@@ -3,6 +3,7 @@ require "Model/Discount.php";
 require "Model/Product.php";
 require "Model/Customer.php";
 require "Model/CustomerGroup.php";
+require "Model/Data.php";
 
 require "Helper/Connection.php";
 require 'Helper/DotEnv.php';
@@ -16,6 +17,7 @@ $database = getenv('DATABASE');
 $hostname = getenv('HOSTNAME');
 
 $conn = new Connection($hostname, $username, $password, $database);
+$data = new Data($conn);
 
 function whatIsHappening() {
     echo '<h2>$_GET</h2>';
