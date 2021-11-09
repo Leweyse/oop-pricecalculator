@@ -7,10 +7,6 @@ class Data
 
     private array $allCustomers;
 
-    private array $allCustomerGroups;
-
-    private array $allDiscounts;
-
     private Connection $conn;
 
     public function __construct($conn)
@@ -35,28 +31,11 @@ class Data
         $colLength = (int)$this->conn->getColLength("customer");
 
         for ($i = 1; $i <= $colLength; $i++) {
-            $this->conn->setData($i, "customer", ["id", "firstname", "lastname", "group_id", "fixed_discount", "variable_discount"], $customers);
+            $this->conn->setData($i, "customer", ["id", "firstname", "lastname"], $customers);
         }
 
         $this->allCustomers = $this->conn->getData();
         $this->conn->clearData();
-    }
-
-    public function setAllCustomerGroups($customerGroups): void
-    {
-        $colLength = (int)$this->conn->getColLength("customer_group");
-
-        for ($i = 1; $i <= $colLength; $i++) {
-            $this->conn->setData($i, "customer_group", ["id", "name", "parent_id", "fixed_discount", "variable_discount"], $customerGroups);
-        }
-        
-        $this->allCustomerGroups = $this->conn->getData();
-        $this->conn->clearData();
-    }
-
-    public function setAllDiscounts(array $allDiscounts): void
-    {
-        $this->allDiscounts = $allDiscounts;
     }
 
     public function getAllProducts(): array
@@ -67,15 +46,5 @@ class Data
     public function getAllCustomers(): array
     {
         return $this->allCustomers;
-    }
-
-    public function getAllCustomerGroups(): array
-    {
-        return $this->allCustomerGroups;
-    }
-
-    public function getAllDiscounts(): array
-    {
-        return $this->allDiscounts;
     }
 }
