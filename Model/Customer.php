@@ -8,8 +8,6 @@ Class Customer extends Discount
 
     private int $groupId;
 
-    private CustomerGroup $customerGroup;
-
     public function setFirstName(string $firstName): void
     {
         $this->firstName = $firstName;
@@ -43,11 +41,6 @@ Class Customer extends Discount
         }
     }
 
-    public function setCustomerGroup(CustomerGroup $customerGroup): void
-    {
-        $this->customerGroup = $customerGroup;
-    }
-
     public function getFirstName(): string
     {
         return $this->firstName;
@@ -63,11 +56,6 @@ Class Customer extends Discount
         return $this->groupId;
     }
 
-    public function getCustomerGroup(): CustomerGroup
-    {
-        return $this->customerGroup;
-    }
-
     public function getFixedDiscount(): int
     {
         return $this->fixedDiscount;
@@ -77,7 +65,4 @@ Class Customer extends Discount
     {
         return $this->variableDiscount;
     }
-
-
-
 }

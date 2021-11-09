@@ -23,6 +23,8 @@ $customerGroup = new CustomerGroup();
 $colLength = (int)$conn->getColLength("customer_group");
 
 for ($i = 1; $i <= $colLength; $i++) {
-    var_dump($conn->getData($i, "customer_group", ["name", "id", "fixed_discount", "variable_discount"], $customerGroup));
+    $conn->setData($i, "customer_group", ["name", "id", "fixed_discount", "variable_discount"], $customerGroup);
 }
+
+var_dump($conn -> getData());
 

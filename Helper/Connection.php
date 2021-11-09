@@ -4,6 +4,8 @@ class Connection
 {
     private mysqli $conn;
 
+    private array $arrData = [];
+
     private Discount $discount;
 
 
@@ -19,7 +21,7 @@ class Connection
         }
     }
 
-    public function getData(int $id, string $table, array $arrElem, $class)
+    public function setData(int $id, string $table, array $arrElem, $class)
     {
         $methods = get_class_methods($class);
 
@@ -36,13 +38,23 @@ class Connection
         $columns = $this->conn->query("SELECT $string FROM $table WHERE id = $id");
         $row = $columns->fetch_assoc();
 
+        $arrTemp = [];
+
         foreach ($methods as $key => $value) {
             if ($key < count($arrElem)) {
                 $class -> $value($row["$arrElem[$key]"]);
+            } else {
+                $arrTemp[] .= $class -> $value();
+                if (count($arrTemp) == count($methods) / 2 ) {
+                    array_push($this -> arrData, $arrTemp);
+                }
             }
         }
+    }
 
-        return $class;
+    public function getData()
+    {
+        return $this -> arrData;
     }
 
     public function getColLength ($table): string {
