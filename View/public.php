@@ -7,6 +7,24 @@
     <title>Document</title>
 </head>
 <body>
-    
+    <main>
+        <form method="post">
+            <?php
+                include 'Component/dropdown.component.php';
+                include 'Section/select.section.php';
+
+                $customer = new Customer();
+                $product = new Product();
+                $customerGroup = new CustomerGroup();
+
+                $data->setAllProducts($product);
+                selectSection($data->getAllProducts());
+
+                $data->setAllCustomers($customer);
+                selectSection($data->getAllCustomers());
+            ?>
+            <input type="submit" value="Submit">
+        </form>
+    </main>
 </body>
 </html>

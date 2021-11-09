@@ -4,9 +4,7 @@ class Connection
 {
     private mysqli $conn;
 
-    private array $arrData = [];
-
-    private Discount $discount;
+    private array $arrayData;
 
 
     public function __construct($hostname, $username, $password, $database)
@@ -29,7 +27,7 @@ class Connection
         $string = '';
 
         foreach($arrElem as $key => $elem) {
-            if ($key == count($arrElem) - 1) {
+            if ($key === count($arrElem) - 1) {
                 $string .= $elem;
             } else {
                 $string .= $elem . ",";
@@ -43,22 +41,28 @@ class Connection
 
         foreach ($methods as $key => $value) {
             if ($key < count($arrElem)) {
-                $class -> $value($row["$arrElem[$key]"]);
+                $class -> $value($row[(string)$arrElem[$key]]);
             } else {
                 $arrTemp[$arrElem[$key % (count($methods) / 2)]] = $class -> $value();
-                if (count($arrTemp) == count($methods) / 2) {
-                    array_push($this -> arrData, $arrTemp);
+                if (count($arrTemp) === count($methods) / 2) {
+                    $this->arrayData[] = $arrTemp;
                 }
             }
         }
     }
 
-    public function getData()
+    public function getData(): array
     {
-        return $this -> arrData;
+        return $this->arrayData;
     }
 
-    public function getColLength ($table): string {
+    public function clearData(): void
+    {
+        $this->arrayData = [];
+    }
+
+    public function getColLength ($table): string
+    {
         $result = $this->conn->query("SELECT COUNT(*) FROM $table ");
         $colLength = $result->fetch_assoc();
         return $colLength["COUNT(*)"];

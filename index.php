@@ -3,9 +3,10 @@ require "Model/Discount.php";
 require "Model/Product.php";
 require "Model/Customer.php";
 require "Model/CustomerGroup.php";
+require "Model/Data.php";
 
 require "Helper/Connection.php";
-include 'Helper/DotEnv.php';
+require 'Helper/DotEnv.php';
 
 $env = new DotEnv(__DIR__ . '/.env');
 $env -> load();
@@ -16,15 +17,17 @@ $database = getenv('DATABASE');
 $hostname = getenv('HOSTNAME');
 
 $conn = new Connection($hostname, $username, $password, $database);
-$customer = new Customer();
-$product = new Product();
-$customerGroup = new CustomerGroup();
+$data = new Data($conn);
 
-$colLength = (int)$conn->getColLength("customer_group");
-
-for ($i = 1; $i <= $colLength; $i++) {
-    $conn->setData($i, "customer_group", ["name", "id", "fixed_discount", "variable_discount"], $customerGroup);
+function whatIsHappening() {
+    echo '<h2>$_GET</h2>';
+    var_dump($_GET);
+    echo '<h2>$_POST</h2>';
+    var_dump($_POST);
+    echo '<h2>$_COOKIE</h2>';
+    var_dump($_COOKIE);
 }
 
-var_dump($conn -> getData());
+whatIsHappening();
 
+require 'View/public.php';
