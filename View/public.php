@@ -7,6 +7,13 @@
     <title>Document</title>
 </head>
 <body>
+
+<form method="post">
+    <select name="">
+        <option value=""></option>
+    </select>
+    <input name="submit"type="submit">
+</form>
     
 </body>
 </html>
