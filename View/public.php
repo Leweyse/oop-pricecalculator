@@ -8,10 +8,11 @@
 </head>
 <body>
     <?php
-        include 'Component/';
+
+        include 'Component/dropdown.component.php';
         include 'Section/select.section.php';
 
-        
+        selectSection($conn -> getData());
     ?>
 </body>
 </html>

@@ -20,12 +20,10 @@ $customer = new Customer();
 $product = new Product();
 $customerGroup = new CustomerGroup();
 
-$colLength = (int)$conn->getColLength("customer_group");
+$colLength = (int)$conn->getColLength("product");
 
 for ($i = 1; $i <= $colLength; $i++) {
-    $conn->setData($i, "customer_group", ["name", "id", "fixed_discount", "variable_discount"], $customerGroup);
+    $conn->setData($i, "product", ["id", "name", "price"], $product);
 }
-
-var_dump($conn -> getData());
 
 require 'View/public.php';
