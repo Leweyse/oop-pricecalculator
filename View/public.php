@@ -7,11 +7,36 @@
     <title>Document</title>
 </head>
 <body>
-    <?php
-        include 'Component/dropdown.component.php';
-        include 'Section/select.section.php';
+    <main>
+        <form method="post">
+            <?php
+                include 'Component/dropdown.component.php';
+                include 'Section/select.section.php';
 
-        selectSection($conn -> getData());
-    ?>
+                $customer = new Customer();
+                $product = new Product();
+                $customerGroup = new CustomerGroup();
+
+                $colLength = (int)$conn->getColLength("product");
+
+                for ($i = 1; $i <= $colLength; $i++) {
+                    $conn->setData($i, "product", ["id", "name", "price"], $product);
+                }
+
+                selectSection($conn -> getData());
+
+                $conn -> cleanData();
+
+                $colLength = (int)$conn->getColLength("customer");
+
+                for ($i = 1; $i <= $colLength; $i++) {
+                    $conn->setData($i, "customer", ["lastname", "firstname", "group_id", "fixed_discount", "variable_discount"], $customer);
+                }
+                
+                selectSection($conn -> getData());
+            ?>
+            <input type="submit" value="Submit">
+        </form>
+    </main>
 </body>
 </html>

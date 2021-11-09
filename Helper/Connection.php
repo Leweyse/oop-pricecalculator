@@ -58,6 +58,11 @@ class Connection
         return $this -> arrData;
     }
 
+    public function cleanData()
+    {
+        $this -> arrData = [];
+    }
+
     public function getColLength ($table): string {
         $result = $this->conn->query("SELECT COUNT(*) FROM $table ");
         $colLength = $result->fetch_assoc();
