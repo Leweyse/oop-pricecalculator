@@ -21,7 +21,7 @@ class Product
 
     public function setPriceInCents(string $price): void
     {
-        $this -> priceInCents = (float)(intval($price) / 100);
+        $this -> priceInCents = (float)((int)($price) / 100);
     }
 
     public function getId(): string

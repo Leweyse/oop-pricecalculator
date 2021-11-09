@@ -7,11 +7,11 @@
     <title>Document</title>
 </head>
 <body>
-    <?php 
-        include 'Component/';
+    <?php
+        include 'Component/dropdown.component.php';
         include 'Section/select.section.php';
 
-        
+        selectSection($conn -> getData());
     ?>
 </body>
 </html>

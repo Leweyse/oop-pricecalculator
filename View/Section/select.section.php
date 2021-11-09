@@ -1,11 +1,13 @@
 <?php
 
 function selectSection($arr) {
+    echo "<select>";
     foreach ($arr as $row) {
         if (isset($row['lastname'])) {
-            displayDropdown($row['lastname'], $row['firstname']);
+            echo displayDropdown($row['lastname'], $row['firstname']);
         } else {
-            displayDropdown($row['name'], $row['price']);
+            echo displayDropdown($row['name'], $row['price']);
         }
     }
+    echo "</select>";
 }
