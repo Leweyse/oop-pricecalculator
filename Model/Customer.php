@@ -2,11 +2,18 @@
 
 Class Customer extends Discount
 {
+    private string $id;
+
     private string $firstName;
 
     private string $lastName;
 
     private int $groupId;
+
+    public function setId(string $id): void
+    {
+        $this->id = $id;
+    }
 
     public function setFirstName(string $firstName): void
     {
@@ -39,6 +46,11 @@ Class Customer extends Discount
         } else {
             $this->variableDiscount = 0;
         }
+    }
+
+    public function getId()
+    {
+        return $this->id;
     }
 
     public function getFirstName(): string

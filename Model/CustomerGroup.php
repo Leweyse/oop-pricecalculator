@@ -7,14 +7,21 @@ class CustomerGroup extends Discount
 
     private string $id;
 
+    private string $parentId;
+
+    public function setId($id): void
+    {
+        $this->id = $id;
+    }
+
     public function setName($name): void
     {
         $this->name = $name;
     }
 
-    public function setId($id): void
+    public function setParentId($parentId): void
     {
-        $this->id = $id;
+        $this->parentId = $parentId;
     }
 
     public function setFixedDiscount($fixedDiscount): void
@@ -35,14 +42,19 @@ class CustomerGroup extends Discount
         }
     }
 
+    public function getId(): int
+    {
+        return (int)$this->id;
+    }
+
     public function getName(): string
     {
         return $this->name;
     }
 
-    public function getId(): int
+    public function getParentId()
     {
-        return (int)$this->id;
+        return $this->parentId;
     }
 
     public function getFixedDiscount(): int

@@ -35,7 +35,7 @@ class Data
         $colLength = (int)$this->conn->getColLength("customer");
 
         for ($i = 1; $i <= $colLength; $i++) {
-            $this->conn->setData($i, "customer", ["firstname", "lastname", "group_id", "fixed_discount", "variable_discount"], $customers);
+            $this->conn->setData($i, "customer", ["id", "firstname", "lastname", "group_id", "fixed_discount", "variable_discount"], $customers);
         }
 
         $this->allCustomers = $this->conn->getData();
@@ -47,7 +47,7 @@ class Data
         $colLength = (int)$this->conn->getColLength("customer_group");
 
         for ($i = 1; $i <= $colLength; $i++) {
-            $this->conn->setData($i, "customer_group", ["name", "id", "fixed_discount", "variable_discount"], $customerGroups);
+            $this->conn->setData($i, "customer_group", ["id", "name", "parent_id", "fixed_discount", "variable_discount"], $customerGroups);
         }
         
         $this->allCustomerGroups = $this->conn->getData();
