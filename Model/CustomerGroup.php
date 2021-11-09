@@ -1,6 +1,6 @@
 <?php
 
-class CustomerGroup extends Discount
+class CustomerGroup
 {
 
     private string $name;
@@ -8,6 +8,10 @@ class CustomerGroup extends Discount
     private string $id;
 
     private string $parentId;
+
+    private int $fixedDiscount;
+
+    private int $variableDiscount;
 
     public function setId($id): void
     {
