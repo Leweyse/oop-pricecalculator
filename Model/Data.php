@@ -18,7 +18,6 @@ class Data
         $this->conn = $conn;
     }
 
-
     public function setAllProducts($products): void
     {
         $colLength = (int)$this->conn->getColLength("product");
@@ -26,6 +25,7 @@ class Data
         for ($i = 1; $i <= $colLength; $i++) {
           $this->conn->setData($i, "product", ["id", "name", "price"], $products);
         }
+
         $this->allProducts = $this->conn->getData();
         $this->conn->clearData();
     }
@@ -37,6 +37,7 @@ class Data
         for ($i = 1; $i <= $colLength; $i++) {
             $this->conn->setData($i, "customer", ["firstname", "lastname", "group_id", "fixed_discount", "variable_discount"], $customers);
         }
+
         $this->allCustomers = $this->conn->getData();
         $this->conn->clearData();
     }
@@ -48,6 +49,7 @@ class Data
         for ($i = 1; $i <= $colLength; $i++) {
             $this->conn->setData($i, "customer_group", ["name", "id", "fixed_discount", "variable_discount"], $customerGroups);
         }
+        
         $this->allCustomerGroups = $this->conn->getData();
         $this->conn->clearData();
     }
