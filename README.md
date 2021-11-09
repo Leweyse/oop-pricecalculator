@@ -11,6 +11,20 @@ Making an OOP price calculator based on the data in our demo database!
 * Created a **Product** class to contain the relevant data for each product
 * Created a **Connection** class to store the data across the session, gave it a **mysqli** connection property and a Product property
 * Instantiated a Connection object on the logic page to test data retrieval with the inbuilt mysqli class, with the .env security file measure active
+
+## Day 2
+Took a slightly wrong approach to the exercise, but were still incredibly productive, and our one function to rule them all has crushed all the limit testing. Accounts for every edge case known to man. Very proud. [setData][ff]
+
+## To do for Day 3
+* [ ] Use SQL to query database for only the data we need
+* [ ] with the post value of id, we check the id of the customer
+* [ ] use id of the customer to check fixed and variable discounts and group id
+* [ ] use group id to check fixed and variable discounts and parent id
+* [ ] while parent id!=null, use parent id to check fixed and variable discounts of parent group
+* [ ] add sum of fixed discounts to highest value of variable discount
+* [ ] deduct discount from item price
+* [ ] if item price < 0, item price = 0
+
 # Application Development (self-hosted)
 
 ## Clone repository
@@ -56,3 +70,4 @@ DATABASE=xxxx
 
 [gh-j]: https://github.com/jvondzerza
 [gh-l]: https://github.com/Leweyse
+[ff]: https://github.com/Leweyse/oop-pricecalculator/blob/main/Helper/Connection.php
