@@ -7,13 +7,11 @@
     <title>Document</title>
 </head>
 <body>
+    <?php
+        include 'Component/';
+        include 'Section/select.section.php';
 
-<form method="post">
-    <select name="">
-        <option value=""></option>
-    </select>
-    <input name="submit"type="submit">
-</form>
-    
+        
+    ?>
 </body>
 </html>
