@@ -16,14 +16,16 @@ $database = getenv('DATABASE');
 $hostname = getenv('HOSTNAME');
 
 $conn = new Connection($hostname, $username, $password, $database);
-$customer = new Customer();
-$product = new Product();
-$customerGroup = new CustomerGroup();
 
-$colLength = (int)$conn->getColLength("product");
-
-for ($i = 1; $i <= $colLength; $i++) {
-    $conn->setData($i, "product", ["id", "name", "price"], $product);
+function whatIsHappening() {
+    echo '<h2>$_GET</h2>';
+    var_dump($_GET);
+    echo '<h2>$_POST</h2>';
+    var_dump($_POST);
+    echo '<h2>$_COOKIE</h2>';
+    var_dump($_COOKIE);
 }
+
+whatIsHappening();
 
 require 'View/public.php';
