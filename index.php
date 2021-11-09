@@ -5,7 +5,7 @@ require "Model/Customer.php";
 require "Model/CustomerGroup.php";
 
 require "Helper/Connection.php";
-include 'Helper/DotEnv.php';
+require 'Helper/DotEnv.php';
 
 $env = new DotEnv(__DIR__ . '/.env');
 $env -> load();
@@ -28,3 +28,4 @@ for ($i = 1; $i <= $colLength; $i++) {
 
 var_dump($conn -> getData());
 
+require 'View/public.php';

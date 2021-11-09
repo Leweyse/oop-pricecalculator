@@ -7,6 +7,11 @@
     <title>Document</title>
 </head>
 <body>
-    
+    <?php 
+        include 'Component/';
+        include 'Section/select.section.php';
+
+        
+    ?>
 </body>
 </html>
