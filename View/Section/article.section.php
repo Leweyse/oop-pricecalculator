@@ -1,14 +1,19 @@
 <?php
 
-function infoSection($variableName, $section) {
-    echo "<article>";
+function articleSection($variableName, $section) {
+    echo "<article class='$variableName'>";
     echo columnComponent($section, "section_name");
         $info = [];
 
         foreach ($_SESSION as $key => $value) {
             if ($key == $variableName) {
-                foreach ($value as $info_value) {
-                    array_push($info, $info_value);
+                if (gettype($value) == "array") {
+                    foreach ($value as $info_value) {
+                        array_push($info, $info_value);
+                    }
+                } else {
+                    array_push($info, "Result");
+                    array_push($info, $value);
                 }
             }
         }

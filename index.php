@@ -34,6 +34,4 @@ function whatIsHappening() {
     var_dump($_SESSION);
 }
 
-whatIsHappening();
-
 require 'View/public.php';

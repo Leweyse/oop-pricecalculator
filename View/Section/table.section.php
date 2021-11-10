@@ -3,8 +3,11 @@
 function tableSection() {
     echo "<section class='table_result'>";
     if (count($_SESSION) > 0) {
-        infoSection("customer_info", "Customer");
-        infoSection("product_info", "Product");
+        articleSection("customer_info", "Customer");
+        articleSection("product_info", "Product");
+        articleSection("fixed_amount", "Fixed Discount");
+        articleSection("variable_amount", "Variable Discount");
+        articleSection("price_result", "Price Result");
     }
     echo "</section>";
 }

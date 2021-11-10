@@ -1,19 +1,13 @@
 <?php
-//TODO
-//with the value of $POST, we check the id of the customer
-//use id of the customer to check fixed and variable discounts and group id
-//use group id to check fixed and variable discounts and parent id
-//while parent id!=null, use parent id to check fixed and variable discounts of parent group
-//add sum of fixed discounts to highest value of variable discount
-//deduct discount from item price
-//if item price < 0, item price = 0
 
 $data->setAllProducts();
 $data->setAllCustomers();
 
 $productId = $customerId = null;
-$fixedArr = $variableArr = [];
-$fixedSum = $variableAmt = 0;
+
+$fixedArr = [];
+$variableArr = [];
+$variableAmt = 0;
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     if (isset($_POST['idProduct']) && isset($_POST['idCustomer'])) {
@@ -26,6 +20,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $product = $data->getProduct()[0];
 
         $customer = $data->getCustomer()[0];
+
         $fixedArr[] = (float)$customer["fixed_discount"];
         $variableArr[] = (float)$customer["variable_discount"];
 
@@ -38,20 +33,26 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
         while ($parentId != 0) {
             $data->setCustomerGroup($parentId);
-
             $group = $data->getCustomerGroup()[0];
             $parentId = $group["parent_id"];
             $fixedArr[] = (float)$group["fixed_discount"];
             $variableArr[] = (float)$group["variable_discount"];
         }
 
-        $_SESSION["customer_info"] = $data->getNamePls($customerId);
-        $_SESSION["product_info"] = ["name" => $product["name"], "price" => $product["price"]];
-        $_SESSION["fixed_discount"] = $fixedArr;
-        $_SESSION["variable_discount"] = $variableArr;
+        $fixedAmt = array_sum($fixedArr);
+        $priceAfterFixed = $product["price"] - $fixedAmt;
+        $variableAmt = $priceAfterFixed * (max($variableArr)/100);
+        $newPrice = $priceAfterFixed - $variableAmt;
 
-        $fixedSum = array_sum($_SESSION["fixed_discount"]);
-        $variableAmt = max($_SESSION["variable_discount"]);
+        if ($newPrice < 0) {
+            $newPrice = 0;
+        }
+
+        $_SESSION["customer_info"] = $data->getNamePls($customerId);
+        $_SESSION["product_info"] = ["name" => $product["name"], "price" => $product["price"] . " euro"];
+        $_SESSION["price_result"] = number_format($newPrice, 2) . " euro";
+        $_SESSION["fixed_amount"] = $fixedAmt . " euro";
+        $_SESSION["variable_amount"] = max($variableArr) . " %";
     }
 }
 
