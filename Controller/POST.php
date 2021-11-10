@@ -19,11 +19,14 @@ $productId = $customerId = null;
 
 $fixedArr = [];
 $variableArr = [];
+$fixedSum = 0;
+$variableAmt = 0;
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     if (isset($_POST['idProduct']) && isset($_POST['idCustomer'])) {
         $productId = $_POST['idProduct'];
         $customerId = $_POST['idCustomer'];
+        var_dump($data->getNamePls($customerId));
 
         $data -> setProduct($productId);
         $data -> setCustomer($customerId);
@@ -50,12 +53,16 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             $variableArr[] = (float)$group["variable_discount"];
         }
 
+        $fixedSum = array_sum($fixedArr);
+        $variableAmt = max($variableArr);
+
         $_SESSION["product_price"] = $product;
         $_SESSION["fixed_discount"] = $fixedArr;
         $_SESSION["variable_discount"] = $variableArr;
     }
 }
-
 var_dump($fixedArr);
 var_dump($variableArr);
+var_dump($fixedSum);
+var_dump($variableAmt);
 

@@ -104,4 +104,8 @@ class Data
     {
         return $this->arrCustomerGroup;
     }
+
+    public function getNamePls($id) {
+       return $this->conn->getName($id);
+    }
 }
