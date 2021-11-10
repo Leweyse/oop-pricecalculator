@@ -28,7 +28,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $data -> setProduct($productId);
         $data -> setCustomer($customerId);
 
-        $product = $data->getProduct()[0]["price"];
+        $product = $data->getProduct()[0];
 
         $customer = $data->getCustomer()[0];
         $fixedArr[] = (float)$customer["fixed_discount"];
@@ -50,7 +50,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             $variableArr[] = (float)$group["variable_discount"];
         }
 
-        $_SESSION["product_price"] = $product;
+        $_SESSION["customer_info"] = [$customer];
+        $_SESSION["product_info"] = [$product["name"], $product["price"]];
         $_SESSION["fixed_discount"] = $fixedArr;
         $_SESSION["variable_discount"] = $variableArr;
     }
