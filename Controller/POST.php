@@ -59,6 +59,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $_SESSION["price_result"] = number_format($newPrice, 2);
         $_SESSION["fixed_discount"] = $fixedArr;
         $_SESSION["variable_discount"] = $variableArr;
+        $_SESSION["variable_amount"] = $variableAmt;
     }
 }
 
