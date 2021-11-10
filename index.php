@@ -8,6 +8,8 @@ require "Model/Data.php";
 require "Helper/Connection.php";
 require 'Helper/DotEnv.php';
 
+session_start();
+
 $env = new DotEnv(__DIR__ . '/.env');
 $env -> load();
 
@@ -28,6 +30,8 @@ function whatIsHappening() {
     var_dump($_POST);
     echo '<h2>$_COOKIE</h2>';
     var_dump($_COOKIE);
+    echo '<h2>$_SESSION</h2>';
+    var_dump($_SESSION);
 }
 
 whatIsHappening();

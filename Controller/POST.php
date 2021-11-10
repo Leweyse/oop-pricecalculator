@@ -24,23 +24,35 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     if (isset($_POST['idProduct']) && isset($_POST['idCustomer'])) {
         $productId = $_POST['idProduct'];
         $customerId = $_POST['idCustomer'];
+
         $data -> setProduct($productId);
         $data -> setCustomer($customerId);
-        $customer = $data->getCustomer();
-        $fixedArr[] = (float)$customer[0]["fixed_discount"];
-        $variableArr[] = (float)$customer[0]["variable_discount"];
-        $data -> setCustomerGroup($customer[0]["group_id"]);
-        $group = $data->getCustomerGroup();
-        $parentId = $group[0]["parent_id"];
-        $fixedArr[] = (float)$group[0]["fixed_discount"];
-        $variableArr[] = (float)$group[0]["variable_discount"];
+
+        $product = $data->getProduct()[0]["price"];
+
+        $customer = $data->getCustomer()[0];
+        $fixedArr[] = (float)$customer["fixed_discount"];
+        $variableArr[] = (float)$customer["variable_discount"];
+
+        $data -> setCustomerGroup($customer["group_id"]);
+
+        $group = $data->getCustomerGroup()[0];
+        $parentId = $group["parent_id"];
+        $fixedArr[] = (float)$group["fixed_discount"];
+        $variableArr[] = (float)$group["variable_discount"];
+
         while ($parentId != 0) {
             $data->setCustomerGroup($parentId);
-            $group = $data->getCustomerGroup();
-            $parentId = $group[0]["parent_id"];
-            $fixedArr[] = (float)$group[0]["fixed_discount"];
-            $variableArr[] = (float)$group[0]["variable_discount"];
+
+            $group = $data->getCustomerGroup()[0];
+            $parentId = $group["parent_id"];
+            $fixedArr[] = (float)$group["fixed_discount"];
+            $variableArr[] = (float)$group["variable_discount"];
         }
+
+        $_SESSION["product_price"] = $product;
+        $_SESSION["fixed_discount"] = $fixedArr;
+        $_SESSION["variable_discount"] = $variableArr;
     }
 }
 
