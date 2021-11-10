@@ -1,5 +1,7 @@
 <?php
 
+use JetBrains\PhpStorm\Pure;
+
 class Data
 {
 
@@ -21,7 +23,7 @@ class Data
 
     private Connection $conn;
 
-    public function __construct($conn)
+    #[Pure] public function __construct($conn)
     {
         $this->conn = $conn;
 
@@ -105,7 +107,8 @@ class Data
         return $this->arrCustomerGroup;
     }
 
-    public function getNamePls($id) {
+    public function getNamePls($id): array
+    {
        return $this->conn->getName($id);
     }
 }

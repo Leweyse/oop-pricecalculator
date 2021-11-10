@@ -15,11 +15,8 @@ $data->setAllCustomers();
 
 $productId = $customerId = null;
 
-
-
 $fixedArr = [];
 $variableArr = [];
-$fixedSum = 0;
 $variableAmt = 0;
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
@@ -31,7 +28,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $data -> setProduct($productId);
         $data -> setCustomer($customerId);
 
-        $product = $data->getProduct()[0]["price"];
+        $product = $data->getProduct()[0];
 
         $customer = $data->getCustomer()[0];
         $fixedArr[] = (float)$customer["fixed_discount"];
@@ -53,16 +50,15 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             $variableArr[] = (float)$group["variable_discount"];
         }
 
-        $fixedSum = array_sum($fixedArr);
-        $variableAmt = max($variableArr);
-
-        $_SESSION["product_price"] = $product;
+        $newPrice = $product["price"] - array_sum($fixedArr);
+        $variableAmt = $product["price"] * (max($variableArr)/100);
+        $newPrice -= $variableAmt;
+        if ($newPrice < 0) {
+            $newPrice = 0;
+        }
+        $_SESSION["price_result"] = number_format($newPrice, 2);
         $_SESSION["fixed_discount"] = $fixedArr;
         $_SESSION["variable_discount"] = $variableArr;
     }
 }
-var_dump($fixedArr);
-var_dump($variableArr);
-var_dump($fixedSum);
-var_dump($variableAmt);
 
