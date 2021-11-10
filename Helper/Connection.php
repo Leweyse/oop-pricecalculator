@@ -67,4 +67,10 @@ class Connection
         $colLength = $result->fetch_assoc();
         return $colLength["COUNT(*)"];
     }
+
+    public function getName ($id) {
+        $columns = $this->conn->query("SELECT firstname, lastname FROM customer WHERE id = $id");
+        $row = $columns->fetch_assoc();
+        return ["firstname" => $row["firstname"], "lastname" => $row["lastname"]];
+    }
 }

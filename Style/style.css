@@ -1,0 +1,22 @@
+.table_result {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.table_result article {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 1rem;
+}
+
+.table_result article .section_name {
+    text-align: center;
+    grid-column: 1 / 3;
+}
+
+.table_result article .info {
+    text-align: center;
+}
+
+

@@ -8,17 +8,12 @@
 //deduct discount from item price
 //if item price < 0, item price = 0
 
-$discount = new Discount();
-
 $data->setAllProducts();
 $data->setAllCustomers();
 
 $productId = $customerId = null;
-
-
-
-$fixedArr = [];
-$variableArr = [];
+$fixedArr = $variableArr = [];
+$fixedSum = $variableAmt = 0;
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     if (isset($_POST['idProduct']) && isset($_POST['idCustomer'])) {
@@ -50,13 +45,13 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             $variableArr[] = (float)$group["variable_discount"];
         }
 
-        $_SESSION["customer_info"] = [$customer];
-        $_SESSION["product_info"] = [$product["name"], $product["price"]];
+        $_SESSION["customer_info"] = $data->getNamePls($customerId);
+        $_SESSION["product_info"] = ["name" => $product["name"], "price" => $product["price"]];
         $_SESSION["fixed_discount"] = $fixedArr;
         $_SESSION["variable_discount"] = $variableArr;
+
+        $fixedSum = array_sum($_SESSION["fixed_discount"]);
+        $variableAmt = max($_SESSION["variable_discount"]);
     }
 }
-
-var_dump($fixedArr);
-var_dump($variableArr);
 
