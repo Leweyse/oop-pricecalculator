@@ -23,14 +23,13 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     if (isset($_POST['idProduct']) && isset($_POST['idCustomer'])) {
         $productId = $_POST['idProduct'];
         $customerId = $_POST['idCustomer'];
-        var_dump($data->getNamePls($customerId));
 
         $data -> setProduct($productId);
         $data -> setCustomer($customerId);
 
         $product = $data->getProduct()[0];
-
         $customer = $data->getCustomer()[0];
+
         $fixedArr[] = (float)$customer["fixed_discount"];
         $variableArr[] = (float)$customer["variable_discount"];
 
@@ -43,16 +42,17 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
         while ($parentId != 0) {
             $data->setCustomerGroup($parentId);
-
             $group = $data->getCustomerGroup()[0];
             $parentId = $group["parent_id"];
             $fixedArr[] = (float)$group["fixed_discount"];
             $variableArr[] = (float)$group["variable_discount"];
         }
 
-        $newPrice = $product["price"] - array_sum($fixedArr);
-        $variableAmt = $product["price"] * (max($variableArr)/100);
-        $newPrice -= $variableAmt;
+        $fixedAmt = array_sum($fixedArr);
+        $priceAfterFixed = $product["price"] - $fixedAmt;
+        $variableAmt = $priceAfterFixed * (max($variableArr)/100);
+        $newPrice = $priceAfterFixed - $variableAmt;
+
         if ($newPrice < 0) {
             $newPrice = 0;
         }
