@@ -1,4 +1,6 @@
 <?php
+    include 'Component/error.component.php';
+
     include 'Component/dropdown.component.php';
     include 'Component/paragraph.component.php';
 
@@ -18,11 +20,17 @@
 </head>
 <body>
     <main>
+        <?php
+            if ($msg !== null) {
+                errorComponent($msg);
+            }
+        ?>
         <form method="post">
             <?php
                 selectSection($data->getAllProducts());
                 selectSection($data->getAllCustomers());
             ?>
+            <input type="text" name="quantity" placeholder="0">
             <input type="submit" value="Submit">
         </form>
 
