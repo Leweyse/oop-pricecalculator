@@ -1,5 +1,4 @@
 <?php
-
 $data->setAllProducts();
 $data->setAllCustomers();
 
@@ -10,7 +9,8 @@ $variableArr = [];
 $variableAmt = 0;
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    if (isset($_POST['idProduct']) && isset($_POST['idCustomer'])) {
+
+    if (isset($_POST['idProduct'], $_POST['idCustomer'])) {
         $productId = $_POST['idProduct'];
         $customerId = $_POST['idCustomer'];
 

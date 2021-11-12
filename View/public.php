@@ -5,6 +5,8 @@
     include 'Section/select.section.php';
     include 'Section/article.section.php';
     include 'Section/table.section.php';
+
+
 ?>
 
 <!DOCTYPE html>
