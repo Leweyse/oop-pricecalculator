@@ -1,5 +1,4 @@
 <?php
-
 $data->setAllProducts();
 $data->setAllCustomers();
 
@@ -65,7 +64,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             $_SESSION["fixed_amount"] = $fixedAmt . " euro";
             $_SESSION["variable_amount"] = max($variableArr) . " %";
         }
-        else $msg = "Error in the number of items!";
+        else $msg = "Error in the number of items";
     }
 }
 
