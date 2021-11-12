@@ -2,7 +2,6 @@
 require "Model/Discount.php";
 require "Model/Product.php";
 require "Model/Customer.php";
-require "Model/CustomerGroup.php";
 require "Model/Data.php";
 
 require "Helper/Connection.php";
