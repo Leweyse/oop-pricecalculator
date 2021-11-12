@@ -46,6 +46,7 @@ class Connection
                 $arrTemp[$arrElem[$key % (count($methods) / 2)]] = $class -> $value();
                 if (count($arrTemp) === count($methods) / 2) {
                     $this->arrayData[] = $arrTemp;
+                    return $arrTemp;
                 }
             }
         }
