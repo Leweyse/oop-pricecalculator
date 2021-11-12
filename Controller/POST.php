@@ -11,8 +11,8 @@ $variableAmt = 0;
 $msg = null;
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    if (isset($_POST['idProduct']) && isset($_POST['idCustomer']) && isset($_POST['quantity'])) {
-        if (ctype_digit(strval($_POST['quantity']))) {
+    if (isset($_POST['idProduct'], $_POST['idCustomer'], $_POST['quantity'])) {
+        if (ctype_digit((string)$_POST['quantity'])) {
             $productId = $_POST['idProduct'];
             $customerId = $_POST['idCustomer'];
             $quantity = $_POST['quantity'];
@@ -46,7 +46,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             $quantityDiscount = (10 ** ($digits - 1));
 
             if ($quantity >= $quantityDiscount && $quantity >= 100) {
-                $product["price"] = $product["price"] - ($digits * 12.5 * $quantityDiscount / (10 ** ($digits)));
+                $product["price"] -= ($digits * 12.5 * $quantityDiscount / (10 ** ($digits)));
             }
 
             $fixedAmt = array_sum($fixedArr);
@@ -64,7 +64,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             $_SESSION["fixed_amount"] = $fixedAmt . " euro";
             $_SESSION["variable_amount"] = max($variableArr) . " %";
         }
-        else $msg = "Error in the number of items";
+        else {
+            $msg = "Error in the number of items";
+        }
     }
 }
 

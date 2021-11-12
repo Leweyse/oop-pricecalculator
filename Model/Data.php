@@ -17,13 +17,13 @@ class Data
 
     // Zero to Twenty
     private array $ztt;
-    // Twenty to Fourty
+    // Twenty to Forty
     private array $ttf;
-    // Fourty to Sixty
+    // Forty to Sixty
     private array $fts;
     // Sixty to Eighty
     private array $ste;
-    // Eighty to Hundred
+    // Eighty to a Hundred
     private array $eth;
 
     private Customer $customer;
