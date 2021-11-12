@@ -28,7 +28,7 @@ if (isset($_GET['public'])) {
         require "Controller/POST.php";
         require 'View/public.php';
     }
-} else {
+}  else {
     require "Controller/POST_LOGIN.php";
     require "View/login.php";
 }

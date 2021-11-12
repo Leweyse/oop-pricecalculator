@@ -19,6 +19,28 @@
     <title>Price Calculator</title>
 </head>
 <body>
+<nav>
+    <ul class="nav">
+        <li class="nav-item">
+            <a class="nav-link active" href="?public=ztt">Zero two twenty</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="?public=ttf">Twenty to forty</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="?public=fts">Forty to sixty</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="?public=ste">Sixty to eighty</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="?public=eth">Eighty to one hundred</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="?public">All prices</a>
+        </li>
+    </ul>
+</nav>
     <main>
         <?php
             if ($msg !== null) {
@@ -27,8 +49,20 @@
         ?>
         <form method="post">
             <?php
+            if ($_GET["public"] === "ztt") {
+                selectSection($data->getZTT());
+            } else if ($_GET["public"] === "ttf") {
+                selectSection($data->getTTF());
+            } else if ($_GET["public"] === "fts") {
+                selectSection($data->getFTS());
+            } else if ($_GET["public"] === "ste") {
+                selectSection($data->getSTE());
+            } else if ($_GET["public"] === "eth") {
+                selectSection($data->getETH());
+            } else {
                 selectSection($data->getAllProducts());
-                selectSection($data->getAllCustomers());
+            }
+            selectSection($data->getAllCustomers());
             ?>
             <input type="text" name="quantity" placeholder="0">
             <input type="submit" value="Submit">

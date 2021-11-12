@@ -15,6 +15,17 @@ class Data
 
     private array $arrCustomerGroup;
 
+    // Zero to Twenty
+    private array $ztt;
+    // Twenty to Fourty
+    private array $ttf;
+    // Fourty to Sixty
+    private array $fts;
+    // Sixty to Eighty
+    private array $ste;
+    // Eighty to Hundred
+    private array $eth;
+
     private Customer $customer;
     
     private Product $product;
@@ -39,7 +50,19 @@ class Data
         $colLength = (int)$this->conn->getColLength("product");
 
         for ($i = 1; $i <= $colLength; $i++) {
-          $this->conn->setData($i, "product", ["id", "name", "price"], $this->product);
+            $productInfo = $this->conn->setData($i, "product", ["id", "name", "price"], $this->product);
+
+            if ($productInfo['price'] > 0 && $productInfo['price'] < 20) {
+                $this->ztt[] = $productInfo;
+            } else if ($productInfo['price'] >= 20 && $productInfo['price'] < 40) {
+                $this->ttf[] = $productInfo;
+            } else if ($productInfo['price'] >= 40 && $productInfo['price'] < 60) {
+                $this->fts[] = $productInfo;
+            } else if ($productInfo['price'] >= 60 && $productInfo['price'] < 80) {
+                $this->ste[] = $productInfo;
+            } else if ($productInfo['price'] >= 80 && $productInfo['price'] < 100) {
+                $this->eth[] = $productInfo;
+            }
         }
 
         $this->allProducts = $this->conn->getData();
@@ -85,6 +108,31 @@ class Data
     public function getAllProducts(): array
     {
         return $this->allProducts;
+    }
+
+    public function getZTT(): array
+    {
+        return $this->ztt;
+    }
+
+    public function getTTF(): array
+    {
+        return $this->ttf;
+    }
+
+    public function getFTS(): array
+    {
+        return $this->fts;
+    }
+
+    public function getSTE(): array
+    {
+        return $this->ste;
+    }
+
+    public function getETH(): array
+    {
+        return $this->eth;
     }
 
     public function getProduct(): array

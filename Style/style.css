@@ -11,18 +11,21 @@ main {
     height: 100%;
 }
 
+main {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 0.2fr 1fr;
+    
+    place-items: center;
+}
+
 form {
     position: relative;
-    top: 5%;
-    left: 50%;
-
-    transform: translate(-50%, 5%);
 }
 
 .table_result {
     display: grid;
     position: relative;
-    top: 25%;
     grid-template-columns: repeat(2, 1fr);
 }
 
@@ -33,6 +36,10 @@ form {
     gap: 1rem;
 
     text-align: center;
+}
+
+.table_result article > * {
+    padding: 0.5rem;
 }
 
 .table_result .section_name {
