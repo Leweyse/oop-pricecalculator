@@ -53,15 +53,15 @@ class Data
             $productInfo = $this->conn->setData($i, "product", ["id", "name", "price"], $this->product);
 
             if ($productInfo['price'] > 0 && $productInfo['price'] < 20) {
-                $ztt[] = $productInfo;
+                $this->ztt[] = $productInfo;
             } else if ($productInfo['price'] >= 20 && $productInfo['price'] < 40) {
-                $ttf[] = $productInfo;
+                $this->ttf[] = $productInfo;
             } else if ($productInfo['price'] >= 40 && $productInfo['price'] < 60) {
-                $fts[] = $productInfo;
+                $this->fts[] = $productInfo;
             } else if ($productInfo['price'] >= 60 && $productInfo['price'] < 80) {
-                $ste[] = $productInfo;
+                $this->ste[] = $productInfo;
             } else if ($productInfo['price'] >= 80 && $productInfo['price'] < 100) {
-                $eth[] = $productInfo;
+                $this->eth[] = $productInfo;
             }
         }
 
