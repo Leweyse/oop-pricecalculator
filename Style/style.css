@@ -70,13 +70,12 @@ form {
     justify-content: center;
     flex-direction: row;
 
-    background: red;
+    background: rgb(199, 50, 50);
 
     z-index: 1111;
 }
 
 .error_container > * {
-    color: var(--clr-text);
-    font-family: var(--ff-principal);
-    font-size: calc(var(--fs-input) * 0.5);
+    color: white;
+    font-size: 1.5rem;
 }

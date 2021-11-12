@@ -2,10 +2,10 @@
 
 ### PHP Exercise 08/11/2021 - 12/11/2021
 
-#Aim of the project:
+# Aim of the project:
 Making an OOP price calculator based on the data in our demo database!
 
-## Progress so far &#9745; :
+## Day 1
 * Ran the SQL code to add 3 additional tables to the **classicmodels** database
 * Enabled the MySQLi extension in the php.ini file for connecting PHP with the MySQL database
 * Created a **Product** class to contain the relevant data for each product
@@ -15,15 +15,21 @@ Making an OOP price calculator based on the data in our demo database!
 ## Day 2
 Took a slightly wrong approach to the exercise, but were still incredibly productive, and our one function to rule them all has crushed all the limit testing. Accounts for every edge case known to man. Very proud. [setData][ff]
 
-## To do for Day 3
-* [ ] Use SQL to query database for only the data we need
-* [ ] with the post value of id, we check the id of the customer
-* [ ] use id of the customer to check fixed and variable discounts and group id
-* [ ] use group id to check fixed and variable discounts and parent id
-* [ ] while parent id!=null, use parent id to check fixed and variable discounts of parent group
-* [ ] add sum of fixed discounts to highest value of variable discount
-* [ ] deduct discount from item price
-* [ ] if item price < 0, item price = 0
+## Day 3
+* Use SQL to query database for only the data we need
+* With the post value of id, we check the id of the customer
+* Use id of the customer to check fixed and variable discounts and group id
+* Use group id to check fixed and variable discounts and parent id
+* While parent id!=null, use parent id to check fixed and variable discounts of parent group
+* Add sum of fixed discounts to highest value of variable discount
+* Deduct discount from item price
+* If item price < 0, item price = 0
+
+## Day 4
+* Added n actual login page for a customer.
+* Added a table where you can see in detail how the price is calculated.
+* The possibility to have different prices for different quantities (look, 1 EUR per item for 1, 0.9 EUR per item for 100, ...).
+* A category page for the different products.
 
 # Application Development (self-hosted)
 

@@ -19,34 +19,34 @@
     <title>Price Calculator</title>
 </head>
 <body>
-<nav>
-    <ul class="nav">
-        <li class="nav-item">
-            <a class="nav-link active" href="?public=ztt">Zero two twenty</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="?public=ttf">Twenty to forty</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="?public=fts">Forty to sixty</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="?public=ste">Sixty to eighty</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="?public=eth">Eighty to one hundred</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="?public">All prices</a>
-        </li>
-    </ul>
-</nav>
+    <?php
+        if ($msg !== null) {
+            errorComponent($msg);
+        }
+    ?>
+    <nav>
+        <ul class="nav">
+            <li class="nav-item">
+                <a class="nav-link active" href="?public=ztt">Zero two twenty</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="?public=ttf">Twenty to forty</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="?public=fts">Forty to sixty</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="?public=ste">Sixty to eighty</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="?public=eth">Eighty to one hundred</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="?public">All prices</a>
+            </li>
+        </ul>
+    </nav>
     <main>
-        <?php
-            if ($msg !== null) {
-                errorComponent($msg);
-            }
-        ?>
         <form method="post">
             <?php
             if ($_GET["public"] === "ztt") {
