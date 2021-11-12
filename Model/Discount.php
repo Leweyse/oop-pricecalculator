@@ -8,44 +8,44 @@ class Discount
 
     private string $variableDiscount;
 
-    public function setId($id)
+    public function setId($id): void
     {
-        if ($id != null) {
+        if ($id !== null) {
             $this->id = $id;
         } else {
             $this->id = 0;
         }
     }
 
-    public function setFixedDiscount($fixedDiscount)
+    public function setFixedDiscount($fixedDiscount): void
     {
-        if ($fixedDiscount != null) {
+        if ($fixedDiscount !== null) {
             $this->fixedDiscount = $fixedDiscount;
         } else {
             $this->fixedDiscount = 0;
         }
     }
 
-    public function setVariableDiscount($variableDiscount)
+    public function setVariableDiscount($variableDiscount): void
     {
-        if ($variableDiscount != null) {
+        if ($variableDiscount !== null) {
             $this->variableDiscount = $variableDiscount;
         } else {
             $this->variableDiscount = 0;
         }
     }
 
-    public function getId()
+    public function getId(): string
     {
         return $this->id;
     }
 
-    public function getFixedDiscount()
+    public function getFixedDiscount(): string
     {
         return $this->fixedDiscount;
     }
 
-    public function getVariableDiscount()
+    public function getVariableDiscount(): string
     {
         return $this->variableDiscount;
     }

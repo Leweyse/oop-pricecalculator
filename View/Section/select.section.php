@@ -2,8 +2,12 @@
 
 function selectSection($arr) {
     echo "<select name=";
-    if(isset($arr[0]['price'])) echo 'idProduct';
-    else echo 'idCustomer';
+    if(isset($arr[0]['price'])) {
+        echo 'idProduct';
+    }
+    else {
+        echo 'idCustomer';
+    }
     echo ">";
     foreach ($arr as $row) {
         if (isset($row['lastname'])) {

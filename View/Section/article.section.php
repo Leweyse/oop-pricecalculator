@@ -6,14 +6,14 @@ function articleSection($variableName, $section) {
         $info = [];
 
         foreach ($_SESSION as $key => $value) {
-            if ($key == $variableName) {
-                if (gettype($value) == "array") {
+            if ($key === $variableName) {
+                if (is_array($value)) {
                     foreach ($value as $info_value) {
-                        array_push($info, $info_value);
+                        $info[] = $info_value;
                     }
                 } else {
-                    array_push($info, "Result");
-                    array_push($info, $value);
+                    $info[] = "Result";
+                    $info[] = $value;
                 }
             }
         }
